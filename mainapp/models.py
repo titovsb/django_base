@@ -10,8 +10,8 @@ class ProductCategory(models.Model):
     short_descr = models.TextField(verbose_name='краткое описание', max_length=150, default='')
 
     class Meta:
-        verbose_name = 'КАТЕГОРИИ'
-        verbose_name_plural = 'Категории продуктов'
+        verbose_name = 'категория'
+        verbose_name_plural = 'категории'
         ordering = ['name', '-description']
 
     def __str__(self):
@@ -31,8 +31,8 @@ class Product(models.Model):
                                        default=0)
 
     class Meta:
-        verbose_name = 'Продукты'
-        verbose_name_plural = 'Продукты'
+        verbose_name = 'продукт'
+        verbose_name_plural = 'продукты'
         ordering = ['name']
 
     def __str__(self):
