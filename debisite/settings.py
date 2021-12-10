@@ -118,12 +118,15 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
-# STATICFILES_DIRS только для dev сервера. на продакшне убрать
+# STATICFILES_DIRS, MEDIA_ROOT только для dev сервера. на продакшне убрать
 
 STATIC_URL = '/antistatic/'
 STATICFILES_DIRS=[
     os.path.join(BASE_DIR, 'static'),
 ]
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
