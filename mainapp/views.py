@@ -33,3 +33,9 @@ def contact(request):
         'locations': locations,
         }
     return render(request, 'mainapp/contact.html', context=context)
+
+def category(request, pk):
+    print(pk)
+    # context={'title':'каталог',
+    #          'primkey': pk}
+    # return render(request, 'mainapp/products.html', context=context)
