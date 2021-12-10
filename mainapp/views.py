@@ -3,6 +3,7 @@ import os
 
 from django.shortcuts import render
 from django.conf import settings as conf_settings
+from mainapp.models import ProductCategory
 
 
 # Create your views here.
@@ -15,8 +16,11 @@ def indexpage(request):
 
 
 def products(request):
+    categories = ProductCategory.objects.all()
+
     context = {
-        'page_title': 'каталог'
+        'page_title': 'каталог',
+        'categories': categories,
         }
     return render(request, 'mainapp/products.html', context=context)
 
