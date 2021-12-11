@@ -2,7 +2,7 @@ import json
 import os
 
 from django.shortcuts import render
-from django.conf import settings as conf_settings
+from django.conf import settings as conf_settings, settings
 from mainapp.models import ProductCategory
 
 
@@ -26,7 +26,7 @@ def products(request):
 
 
 def contact(request):
-    with open(os.path.join(conf_settings.STATICFILES_DIRS[0], 'data', 'saveddata.json'), 'r') as f:
+    with open(os.path.join(settings.BASE_DIR, 'json', 'saveddata.json'), 'r') as f:
         locations = json.load(f)
     context = {
         'page_title': 'контакты',
