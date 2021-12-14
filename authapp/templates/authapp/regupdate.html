@@ -9,7 +9,7 @@
         {% csrf_token %}
         {{ form.as_p }}
         <br>
-        <input type="submit" class="form-control" value="зарегистрироваться">
+        <input type="submit" class="form-control" value="{{ buttontext|default:'отправить форму' }}">
     </form>
     <a href="{% url 'primary:index' %}" class="btn btn-round form-control">
         на главную

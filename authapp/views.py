@@ -46,20 +46,24 @@ def registration(request):
     context = {
         'page_title': 'регистрация',
         'form': form,
+        'buttontext':'зарегистрироваться',
         }
-    return render(request, 'authapp/registration.html', context=context)
+    return render(request, 'authapp/regupdate.html', context=context)
 
 def edit(request):
     if request.method == 'POST':
-        form = DebiUserChangeForm(request.POST, request.FILES)
+        form = DebiUserChangeForm(request.POST, request.FILES,
+                                  instance=request.user)
         if form.is_valid():
             form.save()         # магия - формируем модель
-            return HttpResponseRedirect(reverse('primary:index')) # после регистрации переадресация
+            # return HttpResponseRedirect(reverse('auth:edit')) # после регистрации переадресация
+            return HttpResponseRedirect(request.path_info) # пойти откуда пришли
     else:
-        form = DebiUserChangeForm()
+        form = DebiUserChangeForm(instance=request.user)
 
     context = {
         'page_title': 'изменение',
         'form': form,
+        'buttontext':'сохранить изменения',
         }
-    return render(request, 'authapp/update.html', context=context)
+    return render(request, 'authapp/regupdate.html', context=context)

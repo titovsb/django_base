@@ -4,10 +4,20 @@
         <li><a href="{% url 'primary:index' %}" class="active">домой</a></li>
         <li><a href="{% url 'primary:products' %}">продукты</a></li>
         <li><a href="{% url 'primary:contact' %}">контакты</a></li>
+
+        <li>
+        {% if user.is_authenticated %}
+            <a href="{% url 'auth:edit'%}">
+                {{ user.first_name|default:"Клиент"|capfirst }}
+            </a>
+        {% endif %}
+        </li>
+
+
         <li>
             {% if user.is_authenticated %}
                 <a href="{% url 'auth:logout'%}">
-                    {{ user }}
+                    выйти
                 </a>
             {% else %}
                 <a href="{% url 'auth:login'%}">
