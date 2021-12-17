@@ -1,10 +1,22 @@
 <div class="header clearfix">
-    <a href="{% url 'index' %}" class="logo"></a>
+    <a href="{% url 'primary:index' %}" class="logo"></a>
     <ul class="menu">
-        <li><a href="{% url 'index' %}" class="active">домой</a></li>
-        <li><a href="{% url 'products' %}">продукты</a></li>
-        <li><a href="{% url 'contact' %}">контакты</a></li>
+        <li><a href="{% url 'primary:index' %}" class="active">домой</a></li>
+        <li><a href="{% url 'primary:products' %}">продукты</a></li>
+        <li><a href="{% url 'primary:contact' %}">контакты</a></li>
+        <li>
+            {% if user.is_authenticated %}
+                <a href="{% url 'auth:logout'%}">
+                    {{ user }}
+                </a>
+            {% else %}
+                <a href="{% url 'auth:login'%}">
+                    войти
+                </a>
+            {% endif %}
+        </li>
         <li>{% now 'd.m.y H:i' %}</li>
     </ul>
     <a href="#" class="search"></a>
+<!--        {% now 'd.m.y H:i' %}-->
 </div>

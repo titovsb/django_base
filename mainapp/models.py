@@ -7,7 +7,7 @@ class ProductCategory(models.Model):
     # не обязательное поле только для симв данных
     description = models.TextField('описание', blank=True)
     # добавили новое поле, обязательно задать default= или blank=True
-    short_descr = models.TextField(verbose_name='краткое описание', max_length=150, default='')
+    short_descr = models.CharField(verbose_name='краткое описание', max_length=150, default='')
 
     class Meta:
         verbose_name = 'категория'
