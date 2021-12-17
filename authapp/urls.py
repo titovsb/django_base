@@ -21,5 +21,7 @@ app_name = 'authapp'    # обозначили имя приложения дл�
 urlpatterns = [
     path('login/', authapp.login, name='login'),
     path('logout/', authapp.logout, name='logout'),
+    path('register/', authapp.registration, name='registration'),
+    path('edit/', authapp.edit, name='edit'),
 ]
 

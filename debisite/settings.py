@@ -117,7 +117,7 @@ USE_L10N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
+# Static files (CSS, JavaScript, Imavvvvvgf1ges)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 # STATICFILES_DIRS, MEDIA_ROOT только для dev сервера. на продакшне убрать
 
