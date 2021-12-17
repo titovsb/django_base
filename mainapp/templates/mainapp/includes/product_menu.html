@@ -1,0 +1,18 @@
+<div class="links clearfix">
+    <ul class="links-menu">
+        <li>
+            <a href="#"
+               class="active">
+                все
+            </a>
+        </li>
+        {% for elem in categories %}
+            <li>
+                <a href="{% url 'primary:category' elem.pk %}"
+                   class="active">
+                    {{ elem.name }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+</div>
