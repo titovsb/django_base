@@ -13,17 +13,15 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.conf import settings
-from django.conf.urls.static import static
-from django.contrib import admin
-from django.urls import path, include
+from django.urls import path
+import cartapp.views as cartapp
+
+app_name = 'cartapp'    # обозначили имя приложения для указанного NS
 
 urlpatterns = [
-    path('', include('mainapp.urls', namespace='primary')),
-    path('administrator/', include('authapp.urls', namespace='auth')),
-    path('cart/', include('cartapp.urls', namespace='cart')),
-    path('admin/', admin.site.urls),
+    path('', cartapp.index, name='index'),
+    path('add/<int:pk>/', cartapp.add, name='add'),
+    path('remove/<int:pk>/', cartapp.remove, name='remove'),
+    # path('edit/', cartapp.edit, name='edit'),
 ]
 
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
