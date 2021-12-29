@@ -35,7 +35,14 @@ def contact(request):
     return render(request, 'mainapp/contact.html', context=context)
 
 def category(request, pk):
+    if pk == 0:
+        category = {'pk':0, 'name': 'все'}
+        products = Product.objects.all()
+    else:
+        category = get_objects_or_404(ProductCategory, pk=pk)
+        # products = Product.objects.filter(category=category)  # один вариант
+        products = category.product_set.all()                   # второй вариант
     print(pk)
-    # context={'title':'каталог',
-    #          'primkey': pk}
-    # return render(request, 'mainapp/products.html', context=context)
+    context={'page_title':'товары категории',
+             'primkey': pk}
+    return render(request, 'mainapp/products.html', context=context)
