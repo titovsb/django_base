@@ -10,9 +10,8 @@ def get_expiration_date():
     return timezone.now() + timedelta(hours=24)
 
 
-# Create your models here.
-
 class DebiUser(AbstractUser):
+    email = models.EmailField(unique=True)
     age = models.PositiveIntegerField(verbose_name='возраст', null=True, default=18)
     avatar = models.ImageField(upload_to='avatars', blank=True)
     activation_key = models.CharField(verbose_name='ключ активации', max_length=64, null=True)

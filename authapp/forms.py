@@ -41,7 +41,6 @@ class DebiUserCreationForm(AgeValidatorMixIn, UserCreationForm):
         user.save()
         return user
 
-
 class DebiUserChangeForm(AgeValidatorMixIn, UserChangeForm):
     class Meta:
         model = get_user_model()

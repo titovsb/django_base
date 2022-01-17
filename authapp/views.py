@@ -7,7 +7,6 @@ from django.core.mail import send_mail
 
 # Create your views here.
 from django.urls import reverse
-
 from authapp.forms import DebiUserLoginFrom, DebiUserCreationForm, DebiUserChangeForm
 from authapp.models import DebiUser
 
@@ -40,6 +39,13 @@ def logout(request):
 def registration(request):
     print('Метод', request.method)
     print('Метод', request.user)
+
+    context = {
+    'page_title': 'регистрация',
+    'buttontext': 'зарегистрироваться',
+    }
+
+
     if request.method == 'POST':
         form = DebiUserCreationForm(request.POST, request.FILES)
         if form.is_valid():
@@ -50,13 +56,11 @@ def registration(request):
             else:
                 print('Ошибка отправки сообщения о верификации')
                 return HttpResponseRedirect(reverse('auth:login')) # после регистрации переадресация
-        # else:
+        else:
+            print('форма не прошла валидацию')
+            context['message'] = f'пользователь {request.POST.get("email")} уже существует'
     form = DebiUserCreationForm()
-    context = {
-        'page_title': 'регистрация',
-        'form': form,
-        'buttontext': 'зарегистрироваться',
-        }
+    context['form'] = form
     return render(request, 'authapp/regupdate.html', context=context)
 
 def edit(request):
@@ -108,8 +112,8 @@ def verify(request, email, activation_key):
                 'page_title': 'проверка регистрации',
                 'message': f'пользователь {user.username} зарегистрирован'
                 }
-            # return render(request, 'authapp/verification.html', context=context)
-            return HttpResponseRedirect(reverse('primary:index'))
+            return render(request, 'authapp/verification.html', context=context)
+            # return HttpResponseRedirect(reverse('primary:index'))
         else:
             context={
                 'page_title': 'проверка регистрации',
@@ -120,7 +124,7 @@ def verify(request, email, activation_key):
         print('Ошибка модуля регистрации')
         context={
             'page_title': 'проверка регистрации',
-            'message': f'ошибка регистрации пользователя {user.username}'
+            'message': f'ошибка регистрации пользователя {email}'
             }
         return render(request, 'authapp/verification.html', context=context)
         # return HttpResponseRedirect(reverse('primary:index'))
