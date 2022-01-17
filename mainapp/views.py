@@ -1,7 +1,7 @@
 import json
 import os
 
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.conf import settings as conf_settings, settings
 from mainapp.models import ProductCategory
 
@@ -39,7 +39,7 @@ def category(request, pk):
         category = {'pk':0, 'name': 'все'}
         products = Product.objects.all()
     else:
-        category = get_objects_or_404(ProductCategory, pk=pk)
+        category = get_object_or_404(ProductCategory, pk=pk)
         # products = Product.objects.filter(category=category)  # один вариант
         products = category.product_set.all()                   # второй вариант
     print(pk)

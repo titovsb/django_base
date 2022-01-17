@@ -13,7 +13,7 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.urls import path
+from django.urls import path, re_path
 import authapp.views as authapp
 
 app_name = 'authapp'    # обозначили имя приложения для указанного NS
@@ -23,5 +23,7 @@ urlpatterns = [
     path('logout/', authapp.logout, name='logout'),
     path('register/', authapp.registration, name='registration'),
     path('edit/', authapp.edit, name='edit'),
+    path('userlist/', authapp.userlist, name='userlist'),
+    re_path(r'^verifyregistration/(?P<email>.+)/(?P<activation_key>\w+)/$', authapp.verify, name='verify'),
 ]
 

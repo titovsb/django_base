@@ -8,6 +8,11 @@ https://docs.djangoproject.com/en/3.2/topics/settings/
 
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
+
+Указания:
+1. не забыть раскоментировать валидацию пользователей
+
+
 """
 import os.path
 from pathlib import Path
@@ -86,20 +91,21 @@ DATABASES = {
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
+# не забыть раскомментировать валидацию
 
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
+    # {
+    #     'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+    # },
+    # {
+    #     'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+    # },
+    # {
+    #     'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+    # },
+    # {
+    #     'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+    # },
 ]
 
 
@@ -136,3 +142,21 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'authapp.DebiUser'
+
+
+# EMAIL
+#
+
+DOMAIN_NAME = 'http://localhost:8000'
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_PORT = 465
+EMAIL_HOST_USER = 'admin@localhost'
+# EMAIL_HOST_PASSWORD = 'callgmail'
+# EMAIL_USE_SSL = True
+
+# для python -m smtpd -n -c DebuggingServer localhost:1025
+# EMAIL_HOST_USER, EMAIL_HOST_PASSWORD = None, None
+
+# для логирования почты в файлы
+EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
+EMAIL_FILE_PATH = 'tmp/email-messages/'
