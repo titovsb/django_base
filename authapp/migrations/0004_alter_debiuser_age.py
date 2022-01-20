@@ -6,13 +6,15 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('authapp', '0003_auto_20220113_2145'),
+        ("authapp", "0003_auto_20220113_2145"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='debiuser',
-            name='age',
-            field=models.PositiveIntegerField(default=18, null=True, verbose_name='возраст'),
+            model_name="debiuser",
+            name="age",
+            field=models.PositiveIntegerField(
+                default=18, null=True, verbose_name="возраст"
+            ),
         ),
     ]

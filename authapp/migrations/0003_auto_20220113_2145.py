@@ -7,18 +7,23 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('authapp', '0002_auto_20211211_0519'),
+        ("authapp", "0002_auto_20211211_0519"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='debiuser',
-            name='activation_key',
-            field=models.CharField(max_length=64, null=True, verbose_name='ключ активации'),
+            model_name="debiuser",
+            name="activation_key",
+            field=models.CharField(
+                max_length=64, null=True, verbose_name="ключ активации"
+            ),
         ),
         migrations.AddField(
-            model_name='debiuser',
-            name='expiration_date',
-            field=models.DateTimeField(default=authapp.models.get_expiration_date, verbose_name='код активации истекает'),
+            model_name="debiuser",
+            name="expiration_date",
+            field=models.DateTimeField(
+                default=authapp.models.get_expiration_date,
+                verbose_name="код активации истекает",
+            ),
         ),
     ]

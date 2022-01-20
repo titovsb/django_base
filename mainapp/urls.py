@@ -16,14 +16,13 @@ Including another URLconf
 from django.urls import path, re_path
 import mainapp.views as mainapp
 
-app_name = 'mainapp'    # обозначили имя приложения для указанного NS
+app_name = "mainapp"  # обозначили имя приложения для указанного NS
 
 urlpatterns = [
-    re_path(r'^$', mainapp.indexpage, name='index'),
+    re_path(r"^$", mainapp.indexpage, name="index"),
     # path('products/', mainapp.products, name='products'),          # вместо path применяем re_path
-    re_path(r'^products/', mainapp.products, name='products'),
-    re_path(r'^contact/', mainapp.contact, name='contact'),
+    re_path(r"^products/", mainapp.products, name="products"),
+    re_path(r"^contact/", mainapp.contact, name="contact"),
     # path('category/<int:pk>/', mainapp.category, name='category'),
-    re_path(r'^category/(?P<pk>\d+)/', mainapp.category, name='category'),
+    re_path(r"^category/(?P<pk>\d+)/", mainapp.category, name="category"),
 ]
-
