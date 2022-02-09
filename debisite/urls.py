@@ -18,12 +18,16 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 
+import mainapp.views as mainapp
+
 urlpatterns = [
-    path("", include("mainapp.urls", namespace="primary")),
+    path('', mainapp.indexpage, name="index"),
+    path("products/", include("mainapp.urls", namespace="primary")),
+    path('contact/', mainapp.contact, name='contact'),
     path("administrator/", include("authapp.urls", namespace="auth")),
     path("cart/", include("cartapp.urls", namespace="cart")),
     path("admin/", admin.site.urls),
-    path("", include("social_django.urls", namespace="sosial")),
+    path("", include("social_django.urls", namespace="social")),
 ]
 
 if settings.DEBUG:

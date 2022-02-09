@@ -1,9 +1,12 @@
 <div class="header clearfix">
-    <a href="{% url 'primary:index' %}" class="logo"></a>
+    <a href="{% url 'index' %}" class="logo"></a>
     <ul class="menu">
-        <li><a href="{% url 'primary:index' %}" class="active">домой</a></li>
-        <li><a href="{% url 'primary:products' %}">продукты</a></li>
-        <li><a href="{% url 'primary:contact' %}">контакты</a></li>
+        <li><a href="{% url 'index' %}"
+               class="{% if request.resolver_match.url_name == 'index' %}active{% endif %}">домой</a></li>
+        <li><a href="{% url 'primary:index' %}"
+               class="{% if request.resolver_match.namespace == 'primary' %}active{% endif %}">продукты</a></li>
+        <li><a href="{% url 'contact' %}"
+               class="{% if request.resolver_match.url_name == 'contact' %}active{% endif %}">контакты</a></li>
 
         <li>
         {% if user.is_authenticated %}
@@ -25,7 +28,7 @@
                 </a>
             {% endif %}
         </li>
-        <li>{% now 'd.m.y H:i' %}</li>
+<!--        <li>{% now 'd.m.y H:i' %}</li>-->
     </ul>
     <a href="#" class="search"></a>
     <a href="{% url 'cart:index' %}" class="basket"></a>

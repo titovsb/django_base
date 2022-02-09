@@ -11,6 +11,7 @@ class ProductCategory(models.Model):
     short_descr = models.CharField(
         verbose_name="краткое описание", max_length=150, default=""
     )
+    is_active = models.BooleanField(verbose_name='активная категория', default=True)
 
     class Meta:
         verbose_name = "категория"
@@ -35,6 +36,8 @@ class Product(models.Model):
     quantity = models.PositiveIntegerField(
         verbose_name="количество на складе", default=0
     )
+    is_active = models.BooleanField(verbose_name='активный продукт', default=True)
+    slug = models.CharField(verbose_name='тэг', max_length=32, blank=True)
 
     class Meta:
         verbose_name = "продукт"
