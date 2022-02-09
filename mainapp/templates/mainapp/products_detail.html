@@ -27,7 +27,7 @@
 			<div class="category-products clearfix">
                 {% for product in products %}
                     <div class="block">
-                        <a href="{% url 'primary:product' product.pk %}">
+                        <a href="{% url 'primary:product' product.pk product.slug %}">
                             <img src="/media/{{ product.image }}" alt="{{ product.short_desc }}">
                             <div class="text">
                                 <img src="{% static 'images/icon-hover.png' %}" alt="hover">

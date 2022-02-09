@@ -40,7 +40,6 @@ def contact(request):
 
 def category(request, pk=None, page=1):
     links_menu_cat = ProductCategory.objects.filter(is_active=True)
-    print(links_menu_cat)
 
     if pk is not None:
         if pk == 0:
@@ -52,7 +51,6 @@ def category(request, pk=None, page=1):
 
             # products = Product.objects.filter(category=category)  # один вариант
             # products = category.product_set.all()  # второй вариант
-        print(f'pk={pk} ')
         paginator = Paginator(products, 2)
         try:
             products_paginator = paginator.page(page)
@@ -70,7 +68,7 @@ def category(request, pk=None, page=1):
         }
         return render(request, "mainapp/products_detail.html", context=context)
 
-def product(request, pk):
+def product(request, pk, slug):
     title = 'Продукт'
     links_menu_cat = ProductCategory.objects.filter(is_active=True)
 
