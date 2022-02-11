@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     "mainapp.apps.MainappConfig",
     "authapp.apps.AuthappConfig",
     "cartapp.apps.CartappConfig",
+    "adminapp.apps.AdminappConfig",
     "social_django",
 ]
 

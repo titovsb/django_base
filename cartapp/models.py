@@ -1,4 +1,5 @@
-from django.contrib.auth import get_user_model
+# from django.contrib.auth import get_user_model
+from django.conf import settings
 from django.db import models
 
 # Create your models here.
@@ -7,8 +8,11 @@ from mainapp.models import Product
 
 class CartItem(models.Model):
     # related_name для views доступа
+    # user = models.ForeignKey(
+    #     get_user_model(), on_delete=models.CASCADE, related_name="cart"
+    # )
     user = models.ForeignKey(
-        get_user_model(), on_delete=models.CASCADE, related_name="cart"
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="cart"
     )
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     qtty = models.PositiveIntegerField("кол-во", default=0)

@@ -87,7 +87,7 @@ def edit(request):
             # return HttpResponseRedirect(request.path_info) # пойти откуда пришли
     else:
         form = DebiUserChangeForm(instance=request.user)
-        profile_form = DebiUserProfileEditForm(instance=request.user.debiuserprofile)
+        profile_form = DebiUserProfileEditForm(instance=request.user.profile)
 
     context = {
         "page_title": "редактирование профиля",

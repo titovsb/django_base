@@ -19,6 +19,7 @@ def indexpage(request):
 
 
 def products(request):
+    """Показываем главную страницу категорий"""
     links_menu_cat = ProductCategory.objects.filter(is_active=True)
 
     context = {
@@ -44,10 +45,14 @@ def category(request, pk=None, page=1):
     if pk is not None:
         if pk == 0:
             category = {"pk": 0, "name": "все"}
-            products = Product.objects.filter(is_active=True, category__is_active=True).order_by('price')
+            products = Product.objects.filter(
+                is_active=True, category__is_active=True
+            ).order_by("price")
         else:
             category = get_object_or_404(ProductCategory, pk=pk)
-            products = Product.objects.filter(category__pk=pk, is_active=True, category__is_active=True).order_by('price')
+            products = Product.objects.filter(
+                category__pk=pk, is_active=True, category__is_active=True
+            ).order_by("price")
 
             # products = Product.objects.filter(category=category)  # один вариант
             # products = category.product_set.all()  # второй вариант
@@ -61,23 +66,24 @@ def category(request, pk=None, page=1):
 
         context = {
             "page_title": "товары категории",
-            'links_menu_cat': links_menu_cat,
-            'products': products_paginator,
-            'category': category,
+            "links_menu_cat": links_menu_cat,
+            "products": products_paginator,
+            "category": category,
             "primkey": pk,
         }
         return render(request, "mainapp/products_detail.html", context=context)
 
+
 def product(request, pk, slug):
-    title = 'Продукт'
+    title = "Продукт"
     links_menu_cat = ProductCategory.objects.filter(is_active=True)
 
     product = get_object_or_404(Product, pk=pk)
 
     content = {
-        'page_title': title,
-        'links_menu_cat': links_menu_cat,
-        'product': product,
+        "page_title": title,
+        "links_menu_cat": links_menu_cat,
+        "product": product,
         # 'basket': get_basket(request.user),
     }
-    return render(request, 'mainapp/product.html', content)
+    return render(request, "mainapp/product.html", content)

@@ -13,16 +13,16 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.urls import path    #, re_path
+from django.urls import path  # , re_path
 import mainapp.views as mainapp
 
 app_name = "mainapp"  # обозначили имя приложения для указанного NS
 
 urlpatterns = [
-    path('', mainapp.products, name='index'),
-    path('category/<int:pk>/', mainapp.category, name='category'),
-    path('category/<int:pk>/page/<int:page>/', mainapp.category, name='page'),
-    path('product/<int:pk>/<slug:slug>/', mainapp.product, name='product')
+    path("", mainapp.products, name="index"),
+    path("category/<int:pk>/", mainapp.category, name="category"),
+    path("category/<int:pk>/page/<int:page>/", mainapp.category, name="page"),
+    path("product/<int:pk>/<slug:slug>/", mainapp.product, name="product")
     # path('product/<int:pk>/', mainapp., name='category'),
     # re_path(r"^products/", mainapp.products, name="products"),    # вместо path применяем re_path
     # re_path(r"^contact/", mainapp.contact, name="contact"),

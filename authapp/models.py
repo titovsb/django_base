@@ -23,6 +23,7 @@ class DebiUser(AbstractUser):
     expiration_date = models.DateTimeField(
         verbose_name="код активации истекает", default=get_expiration_date
     )
+    is_active = models.BooleanField(verbose_name="активный/приостановлен", default=True)
 
     def is_activation_expired(self):
         if timezone.now() <= self.expiration_date:
@@ -40,7 +41,11 @@ class DebiUserProfile(models.Model):
         (ALIEN, "Инопланетянин"),
     )
     user = models.OneToOneField(
-        DebiUser, null=False, db_index=True, on_delete=models.CASCADE
+        DebiUser,
+        null=False,
+        db_index=True,
+        on_delete=models.CASCADE,
+        related_name="profile",
     )
     avatar = models.ImageField(verbose_name="аватарка", upload_to="avatars", blank=True)
     tagline = models.CharField(verbose_name="тэги", max_length=128, blank=True)
@@ -54,9 +59,10 @@ class DebiUserProfile(models.Model):
         if created:
             DebiUserProfile.objects.create(user=instance)
         else:
-            instance.debiuserprofile.save()
+            instance.profile.save()
 
-#перенесли код сохранения в предыдущую функцию
-    # @receiver(post_save, sender=DebiUser)
-    # def save_user_profile(sender, instance, **kwargs):
-    #     instance.debiuserprofile.save()
+
+# перенесли код сохранения в предыдущую функцию
+# @receiver(post_save, sender=DebiUser)
+# def save_user_profile(sender, instance, **kwargs):
+#     instance.debiuserprofile.save()

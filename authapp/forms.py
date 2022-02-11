@@ -6,6 +6,17 @@ from django.contrib.auth.forms import (
 )
 import random, hashlib
 
+USER_FIELDS = [
+    "is_active",
+    "username",
+    "password",
+    "email",
+    "first_name",
+    "last_name",
+    "age",
+]
+PROFILE_FIELDS = ["avatar", "gender", "tagline", "about"]
+
 
 # from authapp.models import DebiUser
 from django.forms import HiddenInput, forms, ModelForm
@@ -60,14 +71,7 @@ class DebiUserCreationForm(AgeValidatorMixIn, UserCreationForm):
 class DebiUserChangeForm(AgeValidatorMixIn, UserChangeForm):
     class Meta:
         model = get_user_model()
-        fields = (
-            "username",
-            "password",
-            "email",
-            "first_name",
-            "last_name",
-            "age",
-        )
+        fields = USER_FIELDS
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -81,7 +85,7 @@ class DebiUserChangeForm(AgeValidatorMixIn, UserChangeForm):
 class DebiUserProfileEditForm(ModelForm):
     class Meta:
         model = DebiUserProfile
-        fields = ("avatar", "gender", "tagline", "about")
+        fields = PROFILE_FIELDS
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
