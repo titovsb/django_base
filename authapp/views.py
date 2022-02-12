@@ -77,7 +77,7 @@ def edit(request):
     if request.method == "POST":
         form = DebiUserChangeForm(request.POST, instance=request.user)
         profile_form = DebiUserProfileEditForm(
-            request.POST, request.FILES, instance=request.user.debiuserprofile
+            request.POST, request.FILES, instance=request.user.profile
         )
         if form.is_valid() and profile_form.is_valid():
             form.save()  # магия - формируем модель

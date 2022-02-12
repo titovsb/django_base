@@ -1,7 +1,7 @@
 <div class="header clearfix">
     <a href="{% url 'main' %}" class="logo"></a>
-    namespace="{{ request.resolver_match.namespace }}"
-    url_name="{{ request.resolver_match.url_name }}"
+<!--    namespace="{{ request.resolver_match.namespace }}"-->
+<!--    url_name="{{ request.resolver_match.url_name }}"-->
     <ul class="menu">
         <li><a href="{% url 'main' %}"
                class="{% if request.resolver_match.url_name == 'main' %}active{% endif %}">домой</a></li>
@@ -36,5 +36,11 @@
 <!--        <li>{% now 'd.m.y H:i' %}</li>-->
     </ul>
     <a href="#" class="search"></a>
-    <a href="{% url 'cart:index' %}" class="basket"></a>
-</div>
+    <a href="{% url 'cart:cart' %}" class="basket">
+        <span>
+            {% if cart_items %}
+                {{ cart_items.0.total_cost|floatformat:0 }} руб ({{ cart_items.0.total_quantity }} шт)
+            {% endif %}
+        </span>
+    </a>
+    </div>

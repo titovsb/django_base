@@ -19,8 +19,8 @@ import cartapp.views as cartapp
 app_name = "cartapp"  # обозначили имя приложения для указанного NS
 
 urlpatterns = [
-    path("", cartapp.basket, name="basket"),
-    path("add/<int:pk>/", cartapp.basket_add, name="add"),
-    path("remove/<int:pk>/", cartapp.basket_remove, name="remove"),
-    path('edit/<int:pk>/', cartapp.basket_edit, name='edit'),
+    path("", cartapp.cart, name="cart"),
+    path("add/<int:pk>/", cartapp.cart_add, name="add"),
+    path("remove/<int:pk>/", cartapp.cart_remove, name="remove"),
+    path('edit/<int:pk>/<int:qtty>/', cartapp.cart_edit, name='edit'),
 ]

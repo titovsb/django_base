@@ -14,7 +14,6 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 
 """
-import os.path
 from pathlib import Path
 import os, json
 
@@ -78,6 +77,8 @@ SOCIAL_AUTH_URL_NAMESPACE = "social"
 # LOGIN_ERROR_URL необходима для корректной переадресации при обработке
 # исключений бэкендами аутентификации.
 LOGIN_ERROR_URL = "/"
+LOGIN_URL = '/signin/login/'
+
 
 # Отключаем масштаб (scope) данных пользователя по умолчанию:
 SOCIAL_AUTH_VK_OAUTH2_IGNORE_DEFAULT_SCOPE = True

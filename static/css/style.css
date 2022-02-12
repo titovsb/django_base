@@ -379,19 +379,19 @@ html, body {
     color: #555;
 }
 
-.cart_container {
+.basket_container {
     margin: 25px auto;
     width: 700px;
 }
 
-.cart_list input[type="number"] {
+.basket_list input[type="number"] {
     width: 3em;
     position: relative;
     display: block;
     float: left;
 }
 
-.cart_list span.category_name {
+.basket_list span.category_name {
     margin-left: 2em;
     width: 5em;
     position: relative;
@@ -399,7 +399,7 @@ html, body {
     float: left;
 }
 
-.cart_list span.product_name {
+.basket_list span.product_name {
     margin-left: 1em;
     width: 8em;
     position: relative;
@@ -407,7 +407,7 @@ html, body {
     float: left;
 }
 
-.cart_list span.product_price {
+.basket_list span.product_price {
     margin-left: 1em;
     width: 7em;
     position: relative;
@@ -415,7 +415,7 @@ html, body {
     float: left;
 }
 
-.cart_list span.product_cost {
+.basket_list span.product_cost {
     margin-left: 1em;
     width: 7em;
     position: relative;
@@ -423,18 +423,18 @@ html, body {
     float: left;
 }
 
-.cart_list .cart_record {
+.basket_list .basket_record {
     position: relative;
     display: block;
     height: 170px;
     float: none;
 }
 
-.cart_container .head {
+.basket_container .head {
     margin: 25px auto;
 }
 
-.cart_list .cart_record button {
+.basket_list .basket_record button {
     margin-top: 50px;
     margin-left: 390px;
     width: 150px;
@@ -443,39 +443,38 @@ html, body {
     float: left;
 }
 
-.cart_list button {
+.basket_list button {
     margin-left: 45px;
     width: 150px;
     display: block;
     float: left;
 }
 
-.cart_container button a {
+.basket_container button a {
     text-decoration: none;
     color: #555;
 }
 
-.cart_container img {
+.basket_container img {
     display: block;
     float: left;
     width: 150px;
     border-radius: 25px;
 }
 
-.cart_container input[type="submit"] {
+.basket_container input[type="submit"] {
     width: 150px;
     display: block;
     float: left;
     margin-bottom: 25px;
 }
 
-.cart_container .cart_summary {
+.basket_container .basket_summary {
     display: block;
     margin-left: 50px;
     margin-bottom: 15px;
     color: #555;
 }
-
 
 .products_list .title {
     margin: 20px auto;
@@ -686,18 +685,19 @@ html, body {
 .search {
 	display: block;
 	width: 23px;
-	height: 23px;	
+	height: 23px;
 	background-image: url('/antistatic/images/search.png');
 	position: absolute;
 	top: 63px;
 	/*left: 1176px;*/
 	left: 1151px;
 }
-.cart {
+
+.basket {
 	display: block;
 	width: 23px;
-	height: 23px;	
-	background-image: url('/antistatic/images/cart.png');
+	height: 23px;
+	background-image: url("/antistatic/images/basket.png");
 	position: absolute;
 	top: 63px;
 	/*left: 1210px;*/
@@ -706,7 +706,7 @@ html, body {
     color: #555;
 }
 
-.cart span {
+.basket span {
 	display: block;
     margin-left: 30px;
     width: 150px;
@@ -884,14 +884,14 @@ html, body {
 	margin-bottom: 120px;
 }
 .tab-content .block {
-	height: 270px;
-	width: 270px;
+	height: 370px;
+	width: 370px;
 	position: relative;
 }
 .tab-content a .text {
 	display: none;
-	height: 268px;
-	width: 268px;
+	height: 368px;
+	width: 368px;
 	background-color: #ffffff;
     opacity: 0.9;
     position: absolute;
@@ -1696,17 +1696,4 @@ td:first-child {
 }
 .related-products a:hover .text{
 	display: block;
-}
-
-.basket {
-	display: block;
-	width: 23px;
-	height: 23px;
-	background-image: url("/antistatic/images/basket.png");
-	position: absolute;
-	top: 63px;
-	/*left: 1210px;*/
-	left: 1185px;
-    text-decoration: none;
-    color: #555;
 }

@@ -1,15 +1,15 @@
 <div class="links clearfix">
     <ul class="links-menu">
         <li>
-            <a href="#"
-               class="active">
+            <a href="{% url 'primary:category' 0 %}"
+               class="{% if request.resolver_match.kwargs.pk|add:'0' == 0 %}active{% endif %}">
                 все
             </a>
         </li>
         {% for elem in links_menu_cat %}
             <li>
                 <a href="{% url 'primary:category' elem.pk %}"
-                   class="active">
+                   class="{% if request.resolver_match.kwargs.pk|add:'0' == elem.pk %}active{% endif %}">
                     {{ elem.name }}
                 </a>
             </li>

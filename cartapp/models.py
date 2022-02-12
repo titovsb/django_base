@@ -18,3 +18,24 @@ class CartItem(models.Model):
     qtty = models.PositiveIntegerField("кол-во", default=0)
     add_datetime = models.DateTimeField("время", auto_now_add=True)
     update_time = models.DateTimeField("обновлено", auto_now=True)
+
+    @property
+    def product_cost(self):
+        "получаем цену товаров на одной строке"
+        return self.product.price * self.qtty
+    # product_cost = property(_get_product_cost)
+
+    @property
+    def total_quantity(self):
+        "получаем количество товаров всего заказа пользователя"
+        _items = CartItem.objects.filter(user=self.user)
+        _totalquantity = sum(list(map(lambda x: x.qtty, _items)))
+        return _totalquantity
+
+    @property
+    def total_cost(self):
+        "получить цену всего заказа пользователя"
+        _items = CartItem.objects.filter(user=self.user)
+        _totalcost = sum(list(map(lambda x: x.product_cost, _items)))
+        return _totalcost
+

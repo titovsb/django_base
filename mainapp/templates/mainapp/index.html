@@ -1,49 +1,51 @@
 {% extends 'mainapp/base.html' %}
 {% load static %}
+{% load my_tags %}
 {% block css%}
 	{{ block.super }}
 {% endblock%}
 
-{% block content %}
+{% block menu %}
 		<div class="slider">
 			{% include "mainapp/includes/main_menu.html" %}
 			<div class="text-slider">
 				<h3 class="green">тенденции</h3>
 				<h3 class="big"> удобные стулья</h3>
 				<p>Новый уровень комфорта. Отличные характеристики.</p>
-				<a href="#" class="button-order">заказать <img src="{% static 'images/arrow.png' %}" alt=""></a>
+				<a href="{% url 'primary:index' %}" class="button-order">заказать
+					<img src="{% static 'images/arrow.png' %}" alt=""></a>
 			</div>
 			<div class="navi">
 				<a href="#"></a><a href="#"></a><a href="#"></a>
 			</div>
 		</div>
+{% endblock %}
 
+{% block content %}
 		<div class="featured">
 			<div class="featured-menu">
-					<a class="active" href="#">Популярные</a><a href="#">Новинки</a>
+					<a class="active" href="#">Популярные</a>
+<!--					<a href="#">Новинки</a>-->
 			</div>
-			<a class="explore" href="#">показать все <img src="{% static 'images/arrow.png' %}" alt=""></a>
+			<a class="explore" href="{% url 'primary:category' 0 %}">показать все
+				<img src="{% static 'images/arrow.png' %}" alt=""></a>
 			<div class="clearfix">
 			</div>
 			<div class="tab-content">
+			{% for good in same_goods %}
 				<div class="block">
-					<a href="#"><img src="{% static 'images/product-1.jpg' %}" alt="">
+					<a href="{% url 'primary:product' good.pk good.slug %}">
+						<img style="width: 370px;" src="{{ good.image|media_folder_products }}"
+							 alt="{{ good.short_desc }}">
 						<div class="text">
 							<img src="{% static 'images/icon-hover.png' %}" alt="{% static '' %}">
-							<h4>Отличный стул</h4>
-							<p>Расположитесь комфортно. </p>
-						</div> 
-					</a>
-				</div>
-				<div class="block">
-					<a href="#"><img src="{% static 'images/product-2.jpg' %}" alt="">
-						<div class="text">
-							<img src="{% static 'images/icon-hover.png' %}" alt="">
-							<h4>Стул повышенного качества</h4>
-							<p>Не оторваться. </p>
+							<h4>{{ good.name }}</h4>
+							<p>{{ good.description }}</p>
 						</div>
 					</a>
-				</div>	
+				</div>
+			{% endfor %}
 			</div>
 		</div>
+<!--    <div class="clr"></div>-->
 {% endblock %}
