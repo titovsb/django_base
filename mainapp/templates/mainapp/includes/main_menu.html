@@ -10,29 +10,45 @@
         <li><a href="{% url 'contact' %}"
                class="{% if request.resolver_match.url_name == 'contact' %}active{% endif %}">контакты</a></li>
 
-        <li>
         {% if user.is_authenticated %}
-            <a href="{% url 'auth:edit'%}">
-                {{ user.first_name|default:"Клиент"|capfirst }}
-            </a>
-        {% endif %}
-        </li>
-        {% if user.is_superuser %}
-            <li>
-                <a href="{% url 'console:users' %}">админка</a>
-            </li>
-        {% endif %}
         <li>
-            {% if user.is_authenticated %}
-                <a href="{% url 'auth:logout'%}">
-                    выйти
+            <div class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    {{ user.first_name|default:"Клиент"|capfirst }}
+                    <span class="caret"></span>
                 </a>
-            {% else %}
-                <a href="{% url 'auth:login'%}">
-                    войти
-                </a>
-            {% endif %}
+                <ul class="dropdown-menu">
+                    {% if user.is_superuser %}
+                    <li>
+                        <a href="{% url 'console:users' %}">админка</a>
+                    </li>
+                    {% endif %}
+                    <li>
+                        <a href="{% url 'auth:edit'%}">
+                            профайл
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            заказы
+                        </a>
+                    </li>
+                    <li>
+                            <a href="{% url 'auth:logout'%}">
+                                выйти
+                            </a>
+                    </li>
+                </ul>
+            </div>
         </li>
+        {% else %}
+        <li>
+            <a href="{% url 'auth:login'%}">
+                войти
+            </a>
+        </li>
+        {% endif %}
+
 <!--        <li>{% now 'd.m.y H:i' %}</li>-->
     </ul>
     <a href="#" class="search"></a>
