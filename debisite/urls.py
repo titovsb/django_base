@@ -16,7 +16,7 @@ Including another URLconf
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path, include, re_path
 
 import mainapp.views as mainapp
 
@@ -26,7 +26,8 @@ urlpatterns = [
     path("contact/", mainapp.contact, name="contact"),
     path("signin/", include("authapp.urls", namespace="auth")),
     path("cart/", include("cartapp.urls", namespace="cart")),
-    path("debiadmin/", admin.site.urls),
+    re_path(r"^order/", include("ordersapp.urls", namespace="order")),
+    path("standartadmin/", admin.site.urls),
     path("console/", include("adminapp.urls", namespace="console")),
     path("", include("social_django.urls", namespace="social")),
 ]

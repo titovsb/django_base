@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     "authapp.apps.AuthappConfig",
     "cartapp.apps.CartappConfig",
     "adminapp.apps.AdminappConfig",
+    "ordersapp.apps.OrdersappConfig",
     "social_django",
 ]
 
@@ -124,12 +125,23 @@ WSGI_APPLICATION = "debisite.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+if DEBUG:
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": BASE_DIR / "db.sqlite3",
+        }
     }
-}
+else:
+    DATABASES = {
+        "default": {
+            "NAME": "debitest",
+            "ENGINE": "django.db.backends.postgresql",
+            "USER": "django",
+            "PASSWORD": "geekbrains",
+            "HOST": "localhost",
+        }
+    }
 
 
 # Password validation
