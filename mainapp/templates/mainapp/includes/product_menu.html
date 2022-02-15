@@ -6,7 +6,7 @@
                 все
             </a>
         </li>
-        {% for elem in categories %}
+        {% for elem in links_menu_cat %}
             <li>
                 <a href="{% url 'primary:category' elem.pk %}"
                    class="active">

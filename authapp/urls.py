@@ -16,14 +16,17 @@ Including another URLconf
 from django.urls import path, re_path
 import authapp.views as authapp
 
-app_name = 'authapp'    # обозначили имя приложения для указанного NS
+app_name = "authapp"  # обозначили имя приложения для указанного NS
 
 urlpatterns = [
-    path('login/', authapp.login, name='login'),
-    path('logout/', authapp.logout, name='logout'),
-    path('register/', authapp.registration, name='registration'),
-    path('edit/', authapp.edit, name='edit'),
-    path('userlist/', authapp.userlist, name='userlist'),
-    re_path(r'^verifyregistration/(?P<email>.+)/(?P<activation_key>\w+)/$', authapp.verify, name='verify'),
+    path("login/", authapp.login, name="login"),
+    path("logout/", authapp.logout, name="logout"),
+    path("register/", authapp.registration, name="registration"),
+    path("edit/", authapp.edit, name="edit"),
+    path("userlist/", authapp.userlist, name="userlist"),
+    re_path(
+        r"^verifyregistration/(?P<email>.+)/(?P<activation_key>\w+)/$",
+        authapp.verify,
+        name="verify",
+    ),
 ]
-

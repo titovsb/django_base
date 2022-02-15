@@ -16,12 +16,11 @@ Including another URLconf
 from django.urls import path
 import cartapp.views as cartapp
 
-app_name = 'cartapp'    # обозначили имя приложения для указанного NS
+app_name = "cartapp"  # обозначили имя приложения для указанного NS
 
 urlpatterns = [
-    path('', cartapp.index, name='index'),
-    path('add/<int:pk>/', cartapp.add, name='add'),
-    path('remove/<int:pk>/', cartapp.remove, name='remove'),
-    # path('edit/', cartapp.edit, name='edit'),
+    path("", cartapp.basket, name="basket"),
+    path("add/<int:pk>/", cartapp.basket_add, name="add"),
+    path("remove/<int:pk>/", cartapp.basket_remove, name="remove"),
+    path('edit/<int:pk>/', cartapp.basket_edit, name='edit'),
 ]
-

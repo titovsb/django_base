@@ -6,13 +6,15 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('mainapp', '0001_initial'),
+        ("mainapp", "0001_initial"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='productcategory',
-            name='short_descr',
-            field=models.CharField(default='', max_length=150, verbose_name='краткое описание'),
+            model_name="productcategory",
+            name="short_descr",
+            field=models.CharField(
+                default="", max_length=150, verbose_name="краткое описание"
+            ),
         ),
     ]
