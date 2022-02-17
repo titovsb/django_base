@@ -14,6 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.urls import path, re_path
+# from django.urls import re_path
 import authapp.views as authapp
 
 app_name = "authapp"  # обозначили имя приложения для указанного NS
@@ -30,3 +31,15 @@ urlpatterns = [
         name="verify",
     ),
 ]
+# urlpatterns = [
+#     re_path(r"^login/$", authapp.login, name="login"),
+#     re_path(r"^logout/$", authapp.logout, name="logout"),
+#     re_path(r"^register/$", authapp.registration, name="registration"),
+#     re_path(r"^edit/$", authapp.edit, name="edit"),
+#     re_path(r"^userlist/$", authapp.userlist, name="userlist"),
+#     re_path(
+#         r"^verifyregistration/(?P<email>.+)/(?P<activation_key>\w+)/$",
+#         authapp.verify,
+#         name="verify",
+#     ),
+# ]

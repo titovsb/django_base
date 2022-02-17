@@ -17,6 +17,8 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include, re_path
+# from django.conf.urls import include
+# from django.urls import re_path
 
 import mainapp.views as mainapp
 
@@ -31,6 +33,17 @@ urlpatterns = [
     path("console/", include("adminapp.urls", namespace="console")),
     path("", include("social_django.urls", namespace="social")),
 ]
+# urlpatterns = [
+#     re_path(r"^$", mainapp.indexpage, name="main"),
+#     re_path(r"^products/", include("mainapp.urls", namespace="primary")),
+#     re_path(r"^contact/", mainapp.contact, name="contact"),
+#     re_path(r"^signin/", include("authapp.urls", namespace="auth")),
+#     re_path(r"^cart/", include("cartapp.urls", namespace="cart")),
+#     re_path(r"^order/", include("ordersapp.urls", namespace="order")),
+#     re_path(r"^standartadmin/", admin.site.urls),
+#     re_path(r"^console/", include("adminapp.urls", namespace="console")),
+#     re_path(r"^$", include("social_django.urls", namespace="social")),
+# ]
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
