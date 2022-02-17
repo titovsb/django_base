@@ -1,10 +1,14 @@
 {% extends 'mainapp/base.html' %}
 {% load static %}
-{% block content %}
+
+{% block menu %}
 		<div class="hero">
 			{% include "mainapp/includes/main_menu.html" %}
 			<h1>наши контакты</h1>
 		</div>
+{% endblock %}
+{% block content %}
+
 		<div class="location">
 			{% for elem in locations %}
 				<div class="location-1">

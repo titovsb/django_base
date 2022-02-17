@@ -8,40 +8,81 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='ProductCategory',
+            name="ProductCategory",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=64, verbose_name='название')),
-                ('description', models.TextField(blank=True, verbose_name='описание')),
-                ('short_descr', models.TextField(default='', max_length=150, verbose_name='краткое описание')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=64, verbose_name="название")),
+                ("description", models.TextField(blank=True, verbose_name="описание")),
+                (
+                    "short_descr",
+                    models.TextField(
+                        default="", max_length=150, verbose_name="краткое описание"
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'категория',
-                'verbose_name_plural': 'категории',
-                'ordering': ['name', '-description'],
+                "verbose_name": "категория",
+                "verbose_name_plural": "категории",
+                "ordering": ["name", "-description"],
             },
         ),
         migrations.CreateModel(
-            name='Product',
+            name="Product",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=64, verbose_name='название')),
-                ('image', models.ImageField(blank=True, upload_to='product_images')),
-                ('description', models.TextField(blank=True, verbose_name='описание')),
-                ('short_desc', models.CharField(blank=True, max_length=150, verbose_name='краткое описание')),
-                ('price', models.DecimalField(decimal_places=2, default=0, max_digits=8, verbose_name='цена')),
-                ('quantity', models.PositiveIntegerField(default=0, verbose_name='количество на складе')),
-                ('category', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='mainapp.productcategory')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=64, verbose_name="название")),
+                ("image", models.ImageField(blank=True, upload_to="product_images")),
+                ("description", models.TextField(blank=True, verbose_name="описание")),
+                (
+                    "short_desc",
+                    models.CharField(
+                        blank=True, max_length=150, verbose_name="краткое описание"
+                    ),
+                ),
+                (
+                    "price",
+                    models.DecimalField(
+                        decimal_places=2, default=0, max_digits=8, verbose_name="цена"
+                    ),
+                ),
+                (
+                    "quantity",
+                    models.PositiveIntegerField(
+                        default=0, verbose_name="количество на складе"
+                    ),
+                ),
+                (
+                    "category",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="mainapp.productcategory",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'продукт',
-                'verbose_name_plural': 'продукты',
-                'ordering': ['name'],
+                "verbose_name": "продукт",
+                "verbose_name_plural": "продукты",
+                "ordering": ["name"],
             },
         ),
     ]

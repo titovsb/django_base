@@ -1,0 +1,18 @@
+{% extends 'cartapp/base.html' %}
+{% load static %}
+
+
+{% block content %}
+    <div class="product_delete">
+        Подтвердите удаление продукта <strong>{{ item.product.name }}</strong> из корзины?
+        <form action="{% url 'cart:remove' item.pk %}" method="post">
+            {% csrf_token %}
+            <input class="btn btn-danger" type="submit" value="удалить">
+        </form>
+        <button class="btn btn-success">
+            <a href="{% url 'cart:cart' %}">
+                отмена
+            </a>
+        </button>
+    </div>
+{% endblock %}
