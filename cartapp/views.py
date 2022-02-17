@@ -3,6 +3,8 @@ from django.contrib.auth.decorators import login_required
 from .models import CartItem
 from django.urls import reverse
 
+from mainapp.context_processors import ctx_cart
+
 from mainapp.models import Product
 
 from django.template.loader import render_to_string
@@ -17,10 +19,10 @@ from django.conf import settings
 @login_required(login_url=settings.LOGIN_URL)
 def cart(request):
     page_title = 'корзина покупок'
-    cart_items = CartItem.objects.filter(user=request.user).order_by('product__category')
+    # cart_items = CartItem.objects.filter(user=request.user).order_by('product__category')
     context = {
         'page_title': page_title,
-        'cart_items': cart_items,
+        # 'cart_items': cart_items,
         }
     return render(request, 'cartapp/cart.html', context=context)
 
@@ -65,14 +67,16 @@ def cart_edit(request, pk, qtty):
             new_cart_item.save()
         else:
             new_cart_item.delete()
-        cart_items = CartItem.objects.filter(user=request.user).order_by('product__category')
+        # cart_items = ctx_cart(request)
         # total_items = cart_items.total_quantity
         # total_cost = cart_items.total_cost
         context = {
-            'cart_items': cart_items,
+            # 'cart_items': cart_items,
             # 'total_items': total_items,
             # 'total_cost': total_cost,
             }
-        result = render_to_string('cartapp/includes/cart_list.html', context=context)
+        result = render_to_string('cartapp/includes/cart_list.html',
+                                  context=context,
+                                  request=request)
 
         return JsonResponse({'result': result})

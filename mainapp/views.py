@@ -41,7 +41,7 @@ def indexpage(request):
     random.shuffle(featured_goods)
     context = {
         "page_title": page_title,
-        "cart_items": get_cart(request.user),
+        # "cart_items": get_cart(request.user),
         "same_goods": featured_goods[:3],
         }
     return render(
@@ -58,7 +58,7 @@ def products(request):
     context = {
         "page_title": page_title,
         "links_menu_cat": links_menu_cat,
-        "cart_items": get_cart(request.user),
+        # "cart_items": get_cart(request.user),
         "product": random_good,
         "same_products": get_same_goods(random_good)
     }
@@ -68,12 +68,12 @@ def products(request):
 def contact(request):
     with open(os.path.join(settings.BASE_DIR, "json", "saveddata.json"), "r") as f:
         locations = json.load(f)
-    cart_items = get_cart(request.user)
+    # cart_items = get_cart(request.user)
 
     context = {
         "page_title": "контакты",
         "locations": locations,
-        "cart_items": cart_items,
+        # "cart_items": cart_items,
     }
     return render(request, "mainapp/contact.html", context=context)
 
@@ -81,7 +81,7 @@ def contact(request):
 def category(request, pk=None, page=1):
     page_title = 'товары категории'
     links_menu_cat = ProductCategory.objects.filter(is_active=True)
-    cart_items = get_cart(request.user)
+    # cart_items = get_cart(request.user)
 
     if pk is not None:
         if pk == 0:
@@ -110,7 +110,7 @@ def category(request, pk=None, page=1):
             "products": products_paginator,
             "category": category,
             "primkey": pk,
-            "cart_items": cart_items,
+            # "cart_items": cart_items,
         }
         return render(request, "mainapp/products_detail.html", context=context)
 
@@ -122,7 +122,7 @@ def category(request, pk=None, page=1):
         "links_menu_cat": links_menu_cat,
         # "random_product": random_product,
         # "same_products": same_products,
-        "cart_items": cart_items,
+        # "cart_items": cart_items,
         }
     return render(request, "mainapp/products.html", context=context)
 
@@ -132,10 +132,10 @@ def product(request, pk, slug):
 
     product = get_object_or_404(Product, pk=pk)
 
-    content = {
+    context = {
         "page_title": page_title,
         "links_menu_cat": links_menu_cat,
         "product": product,
-        'cart_items': get_cart(request.user),
+        # 'cart_items': get_cart(request.user),
     }
-    return render(request, "mainapp/product.html", content)
+    return render(request, "mainapp/product.html", context=context)

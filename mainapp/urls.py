@@ -14,7 +14,6 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.urls import path
-# from django.urls import re_path
 import mainapp.views as mainapp
 
 app_name = "mainapp"  # обозначили имя приложения для указанного NS
