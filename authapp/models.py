@@ -57,7 +57,8 @@ class DebiUserProfile(models.Model):
     @receiver(post_save, sender=DebiUser)
     def create_user_profile(sender, instance, created, **kwargs):
         if created:
-            DebiUserProfile.objects.create(user=instance)
+            DebiUserProfile.objects.get_or_create(user=instance)
+            # DebiUserProfile.objects.create(user=instance)
         else:
             instance.profile.save()
 
