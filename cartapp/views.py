@@ -3,8 +3,6 @@ from django.contrib.auth.decorators import login_required
 from .models import CartItem
 from django.urls import reverse
 
-from mainapp.context_processors import ctx_cart
-
 from mainapp.models import Product
 
 from django.template.loader import render_to_string
@@ -59,6 +57,11 @@ def cart_remove(request, pk):
 
 @login_required(login_url=settings.LOGIN_URL)
 def cart_edit(request, pk, qtty):
+    '''
+    для передачи данных корзины в шаблон применяется контекстный процессор ctx_cart()
+    в случае отсутствия контекстного процессора необходимо в render_to_string
+    передать context. параметром request можно пренебречь
+    '''
     if request.is_ajax():
         quantity = int(qtty)
         new_cart_item = CartItem.objects.get(pk=int(pk))
@@ -67,16 +70,7 @@ def cart_edit(request, pk, qtty):
             new_cart_item.save()
         else:
             new_cart_item.delete()
-        # cart_items = ctx_cart(request)
-        # total_items = cart_items.total_quantity
-        # total_cost = cart_items.total_cost
-        context = {
-            # 'cart_items': cart_items,
-            # 'total_items': total_items,
-            # 'total_cost': total_cost,
-            }
         result = render_to_string('cartapp/includes/cart_list.html',
-                                  context=context,
                                   request=request)
 
         return JsonResponse({'result': result})
