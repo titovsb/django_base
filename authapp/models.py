@@ -54,7 +54,7 @@ class DebiUserProfile(models.Model):
         verbose_name="пол", max_length=1, choices=GENDER_CHOICES, blank=True
     )
 
-    @receiver(post_save, sender=DebiUser)
+    # @receiver(post_save, sender=DebiUser)
     def create_user_profile(sender, instance, created, **kwargs):
         if created:
             DebiUserProfile.objects.get_or_create(user=instance)
